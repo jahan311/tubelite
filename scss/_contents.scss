@@ -1,0 +1,122 @@
+@charset 'utf-8';
+
+.wrap {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 768px;
+    margin: 0 auto;
+
+    .contents {
+        width: 100%;
+        height: calc(100vh - 77px);
+
+        .video_player {
+            width: 100%;
+            height: 100%;
+
+            video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    nav {
+        &.navigation_bar {
+            @include centerX(fixed, $bottom:0);
+            width: 100vw;
+            max-width: 768px;
+            background: var(--nav-bg-color);
+            padding: rem(4) rem(19) rem(36) rem(24);
+
+            ul {
+                position: relative;
+                @include flex(center, space-between);
+                flex-wrap: nowrap;
+                li {
+                    a {
+                        @include flex(center, center, 4px, column);
+                        @include ftR;
+                        font-size: rem(9);
+                        color: var(--nav-ft-color);
+                        text-align: center;
+                        &::before {
+                            @include content(block);
+                            background-color: var(--nav-on-color);
+                            width: rem(24);
+                            height: rem(24);
+                        }
+
+                        &.home {
+                            &::before {
+                                @include ico_home_off;
+                            }
+                        }
+
+                        &.subscribe {
+                            &::before {
+                                @include ico_subscribe_off;
+                            }
+                        }
+
+                        &.alarm {
+                            &::before {
+                                @include ico_alarm_off;
+                            }
+                        }
+
+                        &.mypage {
+                            &::before {
+                                @include ico_user_off;
+                            }
+                        }
+
+                        &.upload {
+                            width: rem(36);
+                            height: rem(36);
+                            background: var(--btn-gradient-color);
+                            border-radius: 100%;
+                            font-size: 0;
+                            gap: 0;
+                            &::before {
+                                @include ico_plus;
+                                width: 14px;
+                                height: 14px;
+                            }
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            &.home {
+                                &::before {
+                                    @include ico_home_on;
+                                }
+                            }
+    
+                            &.subscribe {
+                                &::before {
+                                    @include ico_subscribe_on;
+                                }
+                            }
+    
+                            &.alarm {
+                                &::before {
+                                    @include ico_alarm_on;
+                                }
+                            }
+    
+                            &.mypage {
+                                &::before {
+                                    @include ico_user_on;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

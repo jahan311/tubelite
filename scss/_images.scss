@@ -1,0 +1,70 @@
+@charset 'utf-8';
+/* images */
+@mixin image($name, $path: "../images/", $format:"png", $bgXY:center, $bg:'',) {
+    background: #{$bg} url("#{$path}#{$name}.#{$format}") no-repeat $bgXY;
+}
+
+// @mixin img_login_bg {
+//     @include image($name:'img_login_bg', $format:"jpg");
+//     background-size: cover;
+// }
+
+
+/* icon */
+@mixin icon ($name, $path: "../images/", $format:"png", $bgXY:center) {
+    background: url("#{$path}#{$name}.#{$format}") no-repeat $bgXY;
+    font-size: 0;
+}
+
+@mixin iconMask ($name, $color, $path: "../images/icon/", $format:"svg") {
+    background-color: $color;
+    mask-image : url("#{$path}#{$name}.#{$format}");
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    font-size: 0;
+}
+
+@mixin iconThem ($name, $path: "../images/icon/", $format:"svg") {
+    mask-image : url("#{$path}#{$name}.#{$format}");
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    font-size: 0;
+}
+
+@mixin ico_home_off {
+    @include iconThem($name:'ico_home_off');
+}
+
+@mixin ico_home_on {
+    @include iconThem($name:'ico_home_on');
+}
+
+@mixin ico_subscribe_off {
+    @include iconThem($name:'ico_subscribe_off');
+}
+
+@mixin ico_subscribe_on {
+    @include iconThem($name:'ico_subscribe_on');
+}
+
+@mixin ico_alarm_off {
+    @include iconThem($name:'ico_alarm_off');
+}
+
+@mixin ico_alarm_on {
+    @include iconThem($name:'ico_alarm_on');
+}
+
+@mixin ico_user_off {
+    @include iconThem($name:'ico_user_off');
+}
+
+@mixin ico_user_on {
+    @include iconThem($name:'ico_user_on');
+}
+
+@mixin ico_plus {
+    @include iconThem($name:'ico_plus');
+}

@@ -1,0 +1,141 @@
+@charset 'utf-8';
+@use "sass:math";
+
+$font-name: 'Pretendard';
+$base-rem-size: 10;
+
+// 단위 제거
+@function remove-unit($value) {
+  @return math.div($value, $value * 0 + 1);
+}
+
+// rem 계산
+@function rem($px, $base: $base-rem-size) {
+  @return math.div($px, $base) * 1rem;
+}
+
+/* font */
+@mixin ftR {
+    font-family: $font-name;
+    font-weight: 400;
+}
+
+@mixin ftM {
+    font-family: $font-name;
+    font-weight: 500;
+}
+
+@mixin ftB {
+    font-family: $font-name;
+    font-weight: 700;
+}
+
+@mixin ellipsis($lines: 1) {
+    @if ($lines==1) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    @else {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+    }
+}
+
+/* scroll */
+@mixin scroll {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background: initial;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $scroll-color;
+        border-radius: 5px;
+
+        &:hover {
+            background: $gray;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $white;
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+}
+
+@mixin innerscroll($height) {
+    overflow-y: auto;
+    @include scroll;
+    max-height: $height;
+}
+
+/* layout */
+@mixin flex($align, $justify, $gap:0, $direction: row) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    gap: $gap;
+    flex-direction: $direction;
+}
+
+@mixin centerX($type: absolute, $top: null, $bottom: null) {
+    @if($type==fixed or $type==absolute) {
+        position: $type;
+        left: 50%;
+        top: $top;
+        bottom: $bottom;
+        transform: translateX(-50%);
+    }
+}
+
+@mixin centerY($type: absolute, $left: null, $right: null) {
+    @if($type==fixed or $type==absolute) {
+        position: $type;
+        top: 50%;
+        left: $left;
+        right: $right;
+        transform: translateY(-50%);
+    }
+}
+
+@mixin centerXY($type: absolute) {
+    @if($type==fixed or $type==absolute) {
+        position: $type;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@mixin absolute($top: null, $right: null, $bottom: null, $left: null) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin fixed($top: null, $right: null, $bottom: null, $left: null) {
+    position: fixed;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+/* components */
+@mixin content($display: inline-block) {
+    content: '';
+    display: $display;
+}
